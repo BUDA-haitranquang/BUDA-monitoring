@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+
+  mysqld-exporter-database:
+    image: prom/mysqld-exporter
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - DATA_SOURCE_NAME=root:123456@(host.docker.internal:3305)/bdsm
+    ports:
+      - 21094:9104
+
+volumes:
+  exporter:
