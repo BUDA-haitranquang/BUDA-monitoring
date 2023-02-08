@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  jenkins:
+    build: ./
+    container_name: jenkins
+    privileged: true
+    user: root
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "50000:50000"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  # gitlab:
+  #   image: gitlab/gitlab-ee:latest
+  #   container_name: gitlab
+  #   ports:
+  #     - "2222:22"
+  #     - "8443:443"
+  #     - "8480:80"
+  #   restart: always
+volumes:
+  jenkins:
+
